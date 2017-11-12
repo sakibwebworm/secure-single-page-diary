@@ -1,6 +1,8 @@
 <?php
 
+use App\Diary;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +17,10 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/search',function(){
+    $query = Input::get('query');
+    $users = Diary::where('title','like','%'.$query.'%')->get();
+    return response()->json($users);
 });

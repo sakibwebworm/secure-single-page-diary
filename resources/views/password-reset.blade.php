@@ -29,10 +29,17 @@
   <!-- Login form -->
   < <!-- Login form -->
   <div class="wrapper">
-    <form class="form-signin">
+    <form class="form-signin" method="POST" action="{{ route('password.email') }}">
       <h2 class="form-signin-heading">Password Reset </h2>
-      <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" id="margin" />
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+      <input id="email" placeholder="Email Address" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+
+      @if ($errors->has('email'))
+        <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+      @endif
+      <div id="margin"></div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Reset</button>
     </form>
   </div>
 

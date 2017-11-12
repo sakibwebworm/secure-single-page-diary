@@ -6,7 +6,9 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "5dmatwebsearch/advancesearch": "dev-master",
         "fideloper/proxy": "~3.3",
+        "jedrzej/searchable": "0.0.14",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0"
     },

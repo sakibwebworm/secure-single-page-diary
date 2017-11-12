@@ -30,15 +30,14 @@
   < <!-- Login form -->
   <!-- Login form -->
   <div class="wrapper">
-    <form class="form-signin">
+    <form class="form-signin" method="POST" action="{{ route('signup') }}">
+      {{ csrf_field() }}
       <h2 class="form-signin-heading">Please Sign Up</h2>
-      <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
-      <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
-      <input type="password" class="form-control" name="repeatpassword" placeholder="Repeat Password" id="margin" required=""/>
-      <label class="checkbox">
-        <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
-      </label>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+      <input id="name" placeholder="Your Name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+      <input id="email" placeholder="Your Email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+      <input id="password" placeholder="Password" type="password" class="form-control" name="password" required>
+      <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation" required>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Signup</button>
     </form>
   </div>
 
