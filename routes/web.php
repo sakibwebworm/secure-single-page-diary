@@ -11,7 +11,7 @@
 |
 */
 
-
+Auth::routes();
 Route::get('/', function () {
     return view('welcome');
 });
@@ -67,15 +67,20 @@ Route::get('/reset', function () {
 });
 
 /*Single page app routes*/
+Route::group(
+    array('middleware' => 'auth'), function () {
+    Route::get('/app.diary', function () {
+        return view('allentry');
+    });
+    Route::get('/app.diary', function () {
+        return view('allentry');
+    });
+});
 
-Route::get('/app.diary', function () {
-    return view('newentry');
-});
-Route::get('/app.diary', function () {
-    return view('allentry');
-});
+
 /*Route::get('/entries', function () {
     return App\Diary::with('user')->latest()->get();
 });*/
 Route::get('/entries', 'DiaryCOntroller@index');
 Route::get('/searchentries', 'DiaryCOntroller@search');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

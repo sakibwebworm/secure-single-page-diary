@@ -1,46 +1,47 @@
-@extends('layouts.master')
-@section('customcss')
-  <link href="/css/login.css" rel="stylesheet">
-@endsection
-@section('nav')
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Secure Diary</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fa fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav text-uppercase ml-auto">
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/login">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/signup">SignUp</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+@extends('layouts.app')
 
-@endsection
-@section('mainsection')
-  <!-- Login form -->
-  < <!-- Login form -->
-  <div class="wrapper">
-    <form class="form-signin" method="POST" action="{{ route('password.email') }}">
-      <h2 class="form-signin-heading">Password Reset </h2>
-      <input id="email" placeholder="Email Address" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+@section('content')
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+          <div class="panel-heading">Reset Password</div>
 
-      @if ($errors->has('email'))
-        <span class="help-block">
+          <div class="panel-body">
+            @if (session('status'))
+              <div class="alert alert-success">
+                {{ session('status') }}
+              </div>
+            @endif
+
+            <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
+              {{ csrf_field() }}
+
+              <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                <div class="col-md-6">
+                  <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+
+                  @if ($errors->has('email'))
+                    <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-      @endif
-      <div id="margin"></div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Reset</button>
-    </form>
-  </div>
+                  @endif
+                </div>
+              </div>
 
+              <div class="form-group">
+                <div class="col-md-6 col-md-offset-4">
+                  <button type="submit" class="btn btn-primary">
+                    Send Password Reset Link
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection

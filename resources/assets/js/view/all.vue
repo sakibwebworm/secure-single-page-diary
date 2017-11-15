@@ -1,49 +1,71 @@
 <template><div>
-    <div class="col-lg-3 ">
-        <ul class="pagination">
-            <button class="page-item" :disabled ="disablePrevious()"  @click="loadpreviouspage">Previous</button>
-            <span>Page {{ currentPage }} of {{ totalPage }}</span>
-            <button class="page-item" :disabled ="disableNext()"   @click="loadnextpage">Next</button>
-        </ul>
-    </div>
-    <div class="col-lg-6 ">
-        <input type="text" v-model="search" placeholder="Search by title.."/>
-    </div>
-    <div class="col-lg-3">
-        <select class="form-control" id="sel1" v-model="numberofEntries">
-            <option selected>10</option>
-            <option>20</option>
-            <option>30</option>
-            <option>50</option>
-        </select>
-    </div>
-    <div class="box_content">
-        <div class="row" >
-            <div class="col-md-3">
-                Date
-            </div>
-            <div class="col-md-6">
-                Title
-            </div>
-            <div class="col-md-3">
-                Actions
-            </div>
-        </div>
-    </div>
-    <div class="box_content">
-        <div class="row" v-model="entries" v-for="entry in entries">
-            <div class="col-md-3">
-                {{postedOn(entry)}}
-            </div>
-            <div class="col-md-6">
-                {{entry.title}}
-            </div>
-            <div class="col-md-3">
-                {{entry.entry}}
-            </div>
-        </div>
-    </div>
+    <section id="newentry">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="section-heading text-uppercase text-center">Write Your Entries</h2>
+                </div>
 
+                <div class="col-lg-12 text-center">
+                    <div id ="app" class="align-middle">
+                        <div class="box_all_entry">
+                            <div class="container">
+
+                                <div class="col-lg-3 ">
+                                    <ul class="pagination">
+                                        <button class="page-item" :disabled ="disablePrevious()"  @click="loadpreviouspage">Previous</button>
+                                        <span>Page {{ currentPage }} of {{ totalPage }}</span>
+                                        <button class="page-item" :disabled ="disableNext()"   @click="loadnextpage">Next</button>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-6 ">
+                                    <input type="text" v-model="search" placeholder="Search by title.."/>
+                                </div>
+                                <div class="col-lg-3">
+                                    <select class="form-control" id="sel1" v-model="numberofEntries">
+                                        <option selected>10</option>
+                                        <option>20</option>
+                                        <option>30</option>
+                                        <option>50</option>
+                                    </select>
+                                </div>
+                                <div class="box_content">
+                                    <div class="row" >
+                                        <div class="col-md-3">
+                                            Date
+                                        </div>
+                                        <div class="col-md-6">
+                                            Title
+                                        </div>
+                                        <div class="col-md-3">
+                                            Actions
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box_content">
+                                    <div class="row" v-model="entries" v-for="entry in entries">
+                                        <div class="col-md-3">
+                                            {{postedOn(entry)}}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{entry.title}}
+                                        </div>
+                                        <div class="col-md-3">
+                                            {{entry.entry}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
 </div>
 </template>
 
@@ -78,7 +100,7 @@
 
 watch:{
     search: function(val){
-        axios.get('/api/search',{params: {query: val}}).then(({data})=>{
+        axios.get('/api/search').then(({data})=>{
             this.entries=data;
         });
     },

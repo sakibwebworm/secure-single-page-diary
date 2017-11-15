@@ -27,6 +27,7 @@
 </head>
 
 <body id="page-top">
+<h1>{{auth()->id()}}</h1>
 <div id="diaryapp">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark " id="mainNav" style="background:black">
