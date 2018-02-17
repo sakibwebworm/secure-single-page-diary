@@ -82,5 +82,5 @@ Route::group(
     return App\Diary::with('user')->latest()->get();
 });*/
 Route::get('/entries', 'DiaryCOntroller@index');
-Route::get('/searchentries', 'DiaryCOntroller@search');
+Route::get('/searchentries', 'DiaryCOntroller@searchentries');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

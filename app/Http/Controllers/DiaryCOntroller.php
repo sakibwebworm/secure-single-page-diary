@@ -14,6 +14,17 @@ class DiaryCOntroller extends Controller
         $diary = $diary->showDiary($numberofentries);
         return $diary;
     }
+    public function searchentries(Request $request)
+    {
+        $query = $request->get('query');
+        if(is_null($query)){
+            $diary = new Diary();
+            $diary = $diary->showDiary($numberofentries);
+            return $diary;
+        }
+        $entries = Diary::where('title','like','%'.$query.'%')->get();
+        return response()->json($entries);
+    }
    //search result for diaries
     public function search(Request $request)
     {   if(Input::has('name'))

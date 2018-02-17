@@ -32292,7 +32292,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         search: function search(val) {
             var _this2 = this;
 
-            axios.get('/api/search').then(function (_ref2) {
+            axios.get('/searchentries', { params: { query: this.search } }).then(function (_ref2) {
                 var data = _ref2.data;
 
                 _this2.entries = data;

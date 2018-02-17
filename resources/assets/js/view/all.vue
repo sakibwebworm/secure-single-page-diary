@@ -100,7 +100,8 @@
 
 watch:{
     search: function(val){
-        axios.get('/api/search').then(({data})=>{
+
+        axios.get('/searchentries', {params: {query: this.search}}).then(({data})=>{
             this.entries=data;
         });
     },
